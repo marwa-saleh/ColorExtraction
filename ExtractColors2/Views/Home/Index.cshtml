@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable< ExtractColors2.Models.Colors>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -13,13 +14,31 @@
 </form>
 
 
-@if (ViewBag.Message != null)
+@if (ViewBag.Logo != null)
 {
     <div class="alert" style="margin-top:20px">
-        @foreach (string msg in ViewBag.Message)
-        {
-            @Html.Label(msg)
-            <br />
-        }
+        <img src="@String.Format("data:image/png;base64,{0}",Convert.ToBase64String(ViewBag.Logo))" />
+
     </div>
+
+    <table class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th>Name </th>
+            <th>HSV S </th>
+            <th>RGB B </th>
+            <th>RGB R</th>
+            <th>RGB G</th>>
+        </tr>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.Name</td>
+                <td>@d.HSVS</td>
+                <td>@d.RGBB</td>
+                <td>@d.RGBR</td>
+                <td>@d.RGBG</td>
+
+            </tr>
+        }
+    </table>
 }
